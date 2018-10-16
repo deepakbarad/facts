@@ -42,15 +42,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvFactTitle"
-        android:layout_toLeftOf="@+id/ivArrow"
         android:layout_marginEnd="@dimen/margin8dp"
         android:layout_marginRight="@dimen/margin8dp"
         android:layout_marginBottom="@dimen/margin8dp"
+        android:layout_toLeftOf="@+id/ivArrow"
         android:background="@color/drakGray"
         android:maxWidth="64dp"
         android:maxHeight="64dp"
         android:minWidth="64dp"
-        android:minHeight="64dp" />
+        android:minHeight="64dp"
+        android:scaleType="centerCrop" />
 
     <ImageView
         android:id="@+id/ivArrow"

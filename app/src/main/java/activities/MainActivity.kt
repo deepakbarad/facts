@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Parcelable
 import android.support.v4.content.LocalBroadcastManager
+import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -21,7 +22,7 @@ import models.FactNews
 import org.parceler.Parcels
 import viewmodels.MainViewModel
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(),SwipeRefreshLayout.OnRefreshListener {
 
     lateinit var factsBroadcastReceiver:BroadcastReceiver;
     lateinit var adapter: FactsRecyclerViewAdapter;
@@ -46,11 +47,35 @@ class MainActivity : AppCompatActivity() {
                 val data = intent!!.extras[Constants.DATA];
 
                 var factNews: FactNews = Parcels.unwrap(data as Parcelable);
+                setActionBarTitle(factNews.title);
                 populateFacts(factNews);
+                swRefresh.isRefreshing = false;
             }
         }
 
         LocalBroadcastManager.getInstance(applicationContext).registerReceiver(factsBroadcastReceiver, IntentFilter(Constants.FACTS_DOWNLOADED_ACTION))
+
+        swRefresh.setOnRefreshListener(this);
+        swRefresh.setOnRefreshListener {
+
+            getFacts();
+        }
+
+        getFacts()
+    }
+
+    fun setActionBarTitle(title:String)
+    {
+        this.setTitle(title);
+    }
+
+    override fun onRefresh() {
+
+    }
+
+    fun getFacts()
+    {
+        swRefresh.isRefreshing = true;
         viewModel.getFacts();
     }
 

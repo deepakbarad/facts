@@ -6,10 +6,16 @@
     android:layout_height="match_parent"
     tools:context="activities.MainActivity">
 
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvFacts"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 </RelativeLayout>

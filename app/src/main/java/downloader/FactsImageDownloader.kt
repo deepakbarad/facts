@@ -35,7 +35,7 @@ class FactsImageDownloader()
         }
         override fun doInBackground(vararg p0: Void?): Void? {
 
-            val targetSize = ImageSize(64, 64)
+            val targetSize = ImageSize(56, 56)
             App.getImageLoaderInstance().loadImage(url, targetSize, App.getOptions(), object : SimpleImageLoadingListener() {
                 override fun onLoadingComplete(imageUri: String?, view: View?, loadedImage: Bitmap?) {
 
