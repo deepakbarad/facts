@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/padding16"
+    android:layout_marginLeft="@dimen/margin8dp"
+    android:layout_marginEnd="@dimen/padding16"
+    android:layout_marginRight="@dimen/padding16"
+    android:layout_marginBottom="@dimen/padding8dp"
+    android:background="@color/colorLightGray"
+    android:clickable="true"
+    android:elevation="2dp"
+    android:foreground="@android:drawable/list_selector_background">
+
+    <TextView
+        android:id="@+id/tvFactTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/padding8dp"
+        android:paddingLeft="@dimen/padding8dp"
+        android:paddingEnd="@dimen/padding8dp"
+        android:paddingRight="@dimen/padding8dp"
+        android:text="Row Title"
+        android:textColor="@color/colorBlue"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tvDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvFactTitle"
+        android:layout_toLeftOf="@+id/ivFactPhoto"
+        android:paddingStart="@dimen/padding8dp"
+        android:paddingLeft="@dimen/padding8dp"
+        android:paddingEnd="@dimen/padding8dp"
+        android:paddingRight="@dimen/padding8dp"
+        android:text="Row Description"
+        android:textColor="@color/colorBlack" />
+
+    <ImageView
+        android:id="@+id/ivFactPhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvFactTitle"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="@dimen/margin8dp"
+        android:layout_marginRight="@dimen/margin8dp"
+        android:layout_marginBottom="@dimen/margin8dp"
+        android:background="@mipmap/ic_launcher_round"
+        android:minWidth="64dp"
+        android:minHeight="64dp" />
+
+</RelativeLayout>
