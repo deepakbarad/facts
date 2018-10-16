@@ -47,10 +47,10 @@
         android:layout_marginEnd="@dimen/margin8dp"
         android:layout_marginRight="@dimen/margin8dp"
         android:layout_marginBottom="@dimen/margin8dp"
+        android:background="@color/drakGray"
         android:maxWidth="64dp"
         android:maxHeight="64dp"
         android:minWidth="64dp"
-        android:minHeight="64dp"
-        android:src="@drawable/ic_image_blank" />
+        android:minHeight="64dp" />
 
 </RelativeLayout>

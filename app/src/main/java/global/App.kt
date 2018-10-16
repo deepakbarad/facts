@@ -41,8 +41,8 @@ class App : Application()
         fun getOptions():DisplayImageOptions
         {
             val options:DisplayImageOptions = DisplayImageOptions.Builder()
-                    .showImageForEmptyUri(R.drawable.ic_image_blank)
-                    .showImageOnFail(R.drawable.ic_image_blank)
+                    //.showImageForEmptyUri(R.drawable.ic_image_blank)
+                    //.showImageOnFail(R.drawable.ic_image_blank)
                     .cacheInMemory(true)
                     .cacheOnDisk(true)
                     .build()

@@ -40,7 +40,7 @@ class FactsRecyclerViewAdapter(val context:Context) : RecyclerView.Adapter<Facts
         val fact:Fact = this.facts.get(position);
         viewHolder.tvFactTitle.text = fact.title;
         viewHolder.tvDescription.text = fact.description;
-        viewHolder.ivFactPhoto.setImageDrawable(ContextCompat.getDrawable(viewHolder.ivFactPhoto.context,R.drawable.ic_image_blank));
+        viewHolder.ivFactPhoto.setImageBitmap(null);
         FactsImageDownloader.loadImage(fact.imageHref,viewHolder.ivFactPhoto)
     }
 

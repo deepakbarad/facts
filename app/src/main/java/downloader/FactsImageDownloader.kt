@@ -1,6 +1,7 @@
 package downloader
 
 import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.os.AsyncTask
 import android.os.Handler
 import android.os.Looper
@@ -50,7 +51,7 @@ class FactsImageDownloader()
                     //iv.setImageDrawable(ContextCompat.getDrawable(iv.context, R.drawable.ic_image_blank));
 
                     Handler(Looper.getMainLooper()).post(Runnable {
-                        iv.setImageDrawable(ContextCompat.getDrawable(iv.context, R.drawable.ic_image_blank))
+                        iv.setImageBitmap(null)
                     })
                 }
             })
