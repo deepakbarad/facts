@@ -18,7 +18,7 @@ class App : Application()
         super.onCreate()
 
         imageLoaderConfig= ImageLoaderConfiguration.Builder(this)
-                .imageDownloader(FactsImageDownloader(this))
+                //.imageDownloader(FactsImageDownloader(this))
                 //.memoryCache(LruMemoryCache(2 * 1024 * 1024))
                 //.memoryCacheSize(2 * 1024 * 1024)
                 //.diskCache(UnlimitedDiskCache(cacheDir))

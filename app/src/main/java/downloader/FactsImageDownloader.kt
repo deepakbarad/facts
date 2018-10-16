@@ -1,11 +1,63 @@
 package downloader
 
-import android.content.Context
-import com.nostra13.universalimageloader.core.download.BaseImageDownloader
-import com.nostra13.universalimageloader.core.download.ImageDownloader
-import java.io.InputStream
+import android.graphics.Bitmap
+import android.os.AsyncTask
+import android.os.Handler
+import android.os.Looper
+import android.support.v4.content.ContextCompat
+import android.view.View
+import android.widget.ImageView
+import com.nostra13.universalimageloader.core.assist.FailReason
+import com.nostra13.universalimageloader.core.assist.ImageSize
+import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener
+import com.poc.facts.R
+import global.App
 
-class FactsImageDownloader(context: Context) : BaseImageDownloader(context)
+class FactsImageDownloader()
 {
+    companion object {
 
+        fun loadImage(url: String?, iv: ImageView)
+        {
+            DownLoadTask(url,iv).execute();
+        }
+    }
+
+    class DownLoadTask(urlValue: String?, imageView: ImageView):AsyncTask<Void,Void,Void>()
+    {
+        lateinit var iv: ImageView;
+        var url:String? = null;
+
+        init {
+            this.iv = imageView;
+            this.url = urlValue;
+        }
+        override fun doInBackground(vararg p0: Void?): Void? {
+
+            val targetSize = ImageSize(64, 64)
+            App.getImageLoaderInstance().loadImage(url, targetSize, App.getOptions(), object : SimpleImageLoadingListener() {
+                override fun onLoadingComplete(imageUri: String?, view: View?, loadedImage: Bitmap?) {
+
+                    //iv.setImageBitmap(loadedImage);
+
+                    Handler(Looper.getMainLooper()).post(Runnable { iv.setImageBitmap(loadedImage) }
+                    )
+                }
+
+                override fun onLoadingFailed(imageUri: String?, view: View?, failReason: FailReason?) {
+                    super.onLoadingFailed(imageUri, view, failReason)
+
+                    //iv.setImageDrawable(ContextCompat.getDrawable(iv.context, R.drawable.ic_image_blank));
+
+                    Handler(Looper.getMainLooper()).post(Runnable {
+                        iv.setImageDrawable(ContextCompat.getDrawable(iv.context, R.drawable.ic_image_blank))
+                    })
+                }
+            })
+
+            return null;
+        }
+
+
+    }
 }
