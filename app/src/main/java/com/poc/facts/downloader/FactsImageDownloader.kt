@@ -1,4 +1,4 @@
-package downloader
+package com.poc.facts.downloader
 
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
@@ -12,7 +12,7 @@ import com.nostra13.universalimageloader.core.assist.FailReason
 import com.nostra13.universalimageloader.core.assist.ImageSize
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener
 import com.poc.facts.R
-import global.App
+import com.poc.facts.global.App
 
 class FactsImageDownloader()
 {

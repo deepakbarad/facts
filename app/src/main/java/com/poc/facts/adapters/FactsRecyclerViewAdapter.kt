@@ -1,4 +1,4 @@
-package adapters
+package com.poc.facts.adapters
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -11,12 +11,10 @@ import android.widget.ImageView
 import com.nostra13.universalimageloader.core.assist.FailReason
 import com.nostra13.universalimageloader.core.assist.ImageSize
 import com.poc.facts.R
-import global.App
 import kotlinx.android.synthetic.main.row_fact.view.*
-import models.Fact
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener
-import downloader.FactsImageDownloader
-
+import com.poc.facts.downloader.FactsImageDownloader
+import com.poc.facts.models.Fact
 
 class FactsRecyclerViewAdapter(val context:Context) : RecyclerView.Adapter<FactsRecyclerViewAdapter.ViewHolder>()
 {
@@ -37,7 +35,7 @@ class FactsRecyclerViewAdapter(val context:Context) : RecyclerView.Adapter<Facts
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        val fact:Fact = this.facts.get(position);
+        val fact: Fact = this.facts.get(position);
         viewHolder.tvFactTitle.text = fact.title;
         viewHolder.tvDescription.text = fact.description;
         viewHolder.ivFactPhoto.setImageBitmap(null);

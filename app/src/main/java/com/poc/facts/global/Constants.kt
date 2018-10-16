@@ -1,4 +1,4 @@
-package global
+package com.poc.facts.global
 
 class Constants
 {

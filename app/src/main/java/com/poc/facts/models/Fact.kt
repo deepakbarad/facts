@@ -1,4 +1,4 @@
-package models
+package com.poc.facts.models
 
 import org.parceler.Parcel
 

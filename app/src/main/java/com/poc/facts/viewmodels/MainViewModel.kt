@@ -1,13 +1,12 @@
-package viewmodels
+package com.poc.facts.viewmodels
 
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.content.Context
 import android.os.AsyncTask
-import downloader.FactsDataDownloader
-import global.Constants
-import models.Fact
-import models.FactNews
+import com.poc.facts.downloader.FactsDataDownloader
+import com.poc.facts.global.Constants
+import com.poc.facts.models.FactNews
 
 class MainViewModel(application: Application) : AndroidViewModel(application)
 {
@@ -17,7 +16,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application)
     }
 
     ///Exclude rows where title and description are empty
-    fun getValidFacts(factNews:FactNews):FactNews
+    fun getValidFacts(factNews:FactNews): FactNews
     {
         factNews.rows = factNews.rows.filter { row-> !row.title.isNullOrEmpty() || !row.description.isNullOrEmpty() }.toMutableList()
         return factNews;

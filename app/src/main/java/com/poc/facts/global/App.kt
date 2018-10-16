@@ -1,4 +1,4 @@
-package global
+package com.poc.facts.global
 
 import android.app.Application
 import android.support.v4.content.ContextCompat
@@ -8,7 +8,6 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions
 import com.nostra13.universalimageloader.core.ImageLoader
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration
 import com.poc.facts.R
-import downloader.FactsImageDownloader
 
 class App : Application()
 {
