@@ -39,16 +39,12 @@ class FactsImageDownloader()
             App.getImageLoaderInstance().loadImage(url, targetSize, App.getOptions(), object : SimpleImageLoadingListener() {
                 override fun onLoadingComplete(imageUri: String?, view: View?, loadedImage: Bitmap?) {
 
-                    //iv.setImageBitmap(loadedImage);
-
                     Handler(Looper.getMainLooper()).post(Runnable { iv.setImageBitmap(loadedImage) }
                     )
                 }
 
                 override fun onLoadingFailed(imageUri: String?, view: View?, failReason: FailReason?) {
                     super.onLoadingFailed(imageUri, view, failReason)
-
-                    //iv.setImageDrawable(ContextCompat.getDrawable(iv.context, R.drawable.ic_image_blank));
 
                     Handler(Looper.getMainLooper()).post(Runnable {
                         iv.setImageBitmap(null)

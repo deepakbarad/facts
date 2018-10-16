@@ -18,12 +18,6 @@ class App : Application()
         super.onCreate()
 
         imageLoaderConfig= ImageLoaderConfiguration.Builder(this)
-                //.imageDownloader(FactsImageDownloader(this))
-                //.memoryCache(LruMemoryCache(2 * 1024 * 1024))
-                //.memoryCacheSize(2 * 1024 * 1024)
-                //.diskCache(UnlimitedDiskCache(cacheDir))
-                //.diskCacheSize(10 * 1024 * 1024)
-                //.diskCacheFileCount(50)
                 .build();
 
 
@@ -41,8 +35,6 @@ class App : Application()
         fun getOptions():DisplayImageOptions
         {
             val options:DisplayImageOptions = DisplayImageOptions.Builder()
-                    //.showImageForEmptyUri(R.drawable.ic_image_blank)
-                    //.showImageOnFail(R.drawable.ic_image_blank)
                     .cacheInMemory(true)
                     .cacheOnDisk(true)
                     .build()

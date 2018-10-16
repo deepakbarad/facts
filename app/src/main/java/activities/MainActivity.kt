@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity(),SwipeRefreshLayout.OnRefreshListener {
 
                 var factNews: FactNews = Parcels.unwrap(data as Parcelable);
                 setActionBarTitle(factNews.title);
-                populateFacts(factNews);
+                populateFacts(viewModel.getValidFacts(factNews));
                 swRefresh.isRefreshing = false;
             }
         }
