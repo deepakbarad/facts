@@ -1,6 +1,8 @@
 package activities
 
 import adapters.FactsRecyclerViewAdapter
+import android.arch.lifecycle.ViewModelProvider
+import android.arch.lifecycle.ViewModelProviders
 import android.content.*
 import android.graphics.drawable.GradientDrawable
 import android.os.AsyncTask
@@ -17,15 +19,19 @@ import global.Constants
 import kotlinx.android.synthetic.main.activity_main.*
 import models.FactNews
 import org.parceler.Parcels
+import viewmodels.MainViewModel
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var factsBroadcastReceiver:BroadcastReceiver;
     lateinit var adapter: FactsRecyclerViewAdapter;
+    lateinit var viewModel:MainViewModel;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
 
         val layoutManager:LinearLayoutManager = LinearLayoutManager(this);
         adapter = FactsRecyclerViewAdapter(applicationContext);
@@ -45,7 +51,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         LocalBroadcastManager.getInstance(applicationContext).registerReceiver(factsBroadcastReceiver, IntentFilter(Constants.FACTS_DOWNLOADED_ACTION))
-        DownloadTask(this.applicationContext).execute(Constants.FACTS_URL);
+        viewModel.getFacts();
     }
 
     fun populateFacts(factNews: FactNews)
@@ -54,21 +60,7 @@ class MainActivity : AppCompatActivity() {
         adapter.addFacts(factNews.rows);
     }
 
-    class DownloadTask(ctx:Context):AsyncTask<String,Void,Void>()
-    {
-        lateinit var ctx:Context;
 
-        init {
-            this.ctx = ctx;
-        }
-
-        override fun doInBackground(vararg url: String): Void? {
-
-            FactsDataDownloader(ctx,url.get(0)).start(ctx);
-            return null;
-
-        }
-    }
 
     override fun onDestroy() {
         super.onDestroy()
