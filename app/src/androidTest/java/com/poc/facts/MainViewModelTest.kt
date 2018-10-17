@@ -5,6 +5,7 @@ import android.support.test.runner.AndroidJUnit4
 import com.poc.facts.models.Fact
 import com.poc.facts.models.FactNews
 import com.poc.facts.viewmodels.MainViewModel
+import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -45,5 +46,12 @@ class MainViewModelTest {
         factNewsWithValidFacts = mainViewModel!!.getValidFacts(factNews)
 
         assert(factNewsWithValidFacts.rows.size == 1);
+    }
+
+    @After
+    fun clear()
+    {
+        mockApplication = null
+        mainViewModel = null
     }
 }
