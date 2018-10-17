@@ -11,6 +11,7 @@ import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import com.poc.facts.R
 import com.poc.facts.adapters.FactsRecyclerViewAdapter
+import com.poc.facts.global.App
 import com.poc.facts.global.Constants
 import com.poc.facts.models.FactNews
 import com.poc.facts.viewmodels.MainViewModel
@@ -48,7 +49,7 @@ class MainActivity : AppCompatActivity(),SwipeRefreshLayout.OnRefreshListener {
             }
         }
 
-        LocalBroadcastManager.getInstance(applicationContext).registerReceiver(factsBroadcastReceiver, IntentFilter(Constants.FACTS_DOWNLOADED_ACTION))
+        App.registerReceiver(applicationContext, factsBroadcastReceiver, IntentFilter(Constants.FACTS_DOWNLOADED_ACTION))
 
         swRefresh.setOnRefreshListener(this);
         swRefresh.setOnRefreshListener {

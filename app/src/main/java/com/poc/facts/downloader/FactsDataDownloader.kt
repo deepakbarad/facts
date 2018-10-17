@@ -12,6 +12,7 @@ import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
+import com.poc.facts.global.App
 import com.poc.facts.global.Constants
 import com.poc.facts.models.FactNews
 import org.json.JSONObject
@@ -41,18 +42,19 @@ class FactsDataDownloader(context: Context, uriValue: String) {
                 Response.Listener<JSONObject> { response ->
                     val news:String = response.toString();
                     val factNews:FactNews = gson.fromJson(news, FactNews::class.java);
-
-                    var intent: Intent = Intent(Constants.FACTS_DOWNLOADED_ACTION);
-                    intent.putExtra(Constants.DATA,Parcels.wrap(factNews))
-                    ctx.sendBroadcast(intent)
-                    LocalBroadcastManager.getInstance(ctx).sendBroadcast(intent);
-
+                    App.sendLocalBroadcastMessage(ctx,getDownloadActionIntent(factNews))
                 },
                 Response.ErrorListener {
-
+                    App.showToast(ctx,"Unable to fetch data!!")
                 })
 
         requestQueue.add(request);
         requestQueue.start();
+    }
+
+    private fun getDownloadActionIntent(factNews: FactNews): Intent {
+        var intent: Intent = Intent(Constants.FACTS_DOWNLOADED_ACTION);
+        intent.putExtra(Constants.DATA, Parcels.wrap(factNews))
+        return intent
     }
 }
