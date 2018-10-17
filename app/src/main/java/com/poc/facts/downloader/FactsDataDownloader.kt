@@ -21,7 +21,7 @@ import org.parceler.Parcels
 
 
 class FactsDataDownloader(context: Context, uriValue: String) {
-    lateinit var url: String;
+    lateinit var url: String
 
 
     companion object {
@@ -30,31 +30,38 @@ class FactsDataDownloader(context: Context, uriValue: String) {
 
 
     init {
-        requestQueue = Volley.newRequestQueue(context);
-        url = uriValue;
+        requestQueue = Volley.newRequestQueue(context)
+        url = uriValue
     }
 
     fun start(ctx:Context) {
 
-        val gson:Gson = GsonBuilder().create();
+        val gson:Gson = GsonBuilder().create()
 
         val request = JsonObjectRequest(Request.Method.GET, url, null,
                 Response.Listener<JSONObject> { response ->
-                    val news:String = response.toString();
-                    val factNews:FactNews = gson.fromJson(news, FactNews::class.java);
+                    val news:String = response.toString()
+                    val factNews:FactNews = gson.fromJson(news, FactNews::class.java)
                     App.sendLocalBroadcastMessage(ctx,getDownloadActionIntent(factNews))
                 },
                 Response.ErrorListener {
-                    App.showToast(ctx,"Unable to fetch data!!")
+                    App.sendLocalBroadcastMessage(ctx,getDownloadFailedActionIntent("Unable to fetch data!!"))
                 })
 
-        requestQueue.add(request);
-        requestQueue.start();
+        requestQueue.add(request)
+        requestQueue.start()
     }
 
     private fun getDownloadActionIntent(factNews: FactNews): Intent {
-        var intent: Intent = Intent(Constants.FACTS_DOWNLOADED_ACTION);
+        var intent: Intent = Intent(Constants.FACTS_DOWNLOADED_ACTION)
         intent.putExtra(Constants.DATA, Parcels.wrap(factNews))
         return intent
     }
+
+    private fun getDownloadFailedActionIntent(message:String): Intent {
+        var intent: Intent = Intent(Constants.FACTS_DOWNLOAD_FAILED_ACTION)
+        intent.putExtra(Constants.DATA, message)
+        return intent
+    }
+
 }

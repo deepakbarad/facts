@@ -17,17 +17,17 @@ import com.poc.facts.R
 
 class App : Application()
 {
-    lateinit var imageLoaderConfig:ImageLoaderConfiguration;
+    lateinit var imageLoaderConfig:ImageLoaderConfiguration
 
     override fun onCreate() {
         super.onCreate()
 
         imageLoaderConfig= ImageLoaderConfiguration.Builder(this)
-                .build();
+                .build()
 
 
 
-        ImageLoader.getInstance().init(imageLoaderConfig);
+        ImageLoader.getInstance().init(imageLoaderConfig)
     }
 
     companion object {
@@ -44,7 +44,7 @@ class App : Application()
                     .cacheOnDisk(true)
                     .build()
 
-            return options;
+            return options
         }
 
         fun registerReceiver(ctx:Context, receiver: BroadcastReceiver,intentFilter: IntentFilter)
@@ -52,9 +52,14 @@ class App : Application()
             LocalBroadcastManager.getInstance(ctx).registerReceiver(receiver, intentFilter)
         }
 
+        fun unRegisterReceiver(ctx:Context, receiver: BroadcastReceiver)
+        {
+            LocalBroadcastManager.getInstance(ctx).unregisterReceiver(receiver)
+        }
+
         fun sendLocalBroadcastMessage(ctx:Context, intent: Intent)
         {
-            LocalBroadcastManager.getInstance(ctx).sendBroadcast(intent);
+            LocalBroadcastManager.getInstance(ctx).sendBroadcast(intent)
         }
 
         fun showToast(ctx:Context, message:String)
